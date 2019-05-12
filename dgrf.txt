@@ -1,0 +1,552 @@
+
+Authenticating with public key "imported-openssh-key"
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+1 package(s) needed for security, out of 3 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-33-34 ~]$ sudo -su
+sudo: option requires an argument -- 'u'
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user]
+            [command]
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p
+            prompt] [-u user] [VAR=value] [-i|-s] [<command>]
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p
+            prompt] [-u user] file ...
+[ec2-user@ip-172-31-33-34 ~]$ sudo su
+[root@ip-172-31-33-34 ec2-user]# yum install docker
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                               | 2.4 kB     00:00
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 0:18.06.1ce-8.amzn2 will be installed
+--> Processing Dependency: pigz for package: docker-18.06.1ce-8.amzn2.x86_64
+--> Processing Dependency: libcgroup for package: docker-18.06.1ce-8.amzn2.x86_6                                                                                        4
+--> Processing Dependency: libltdl.so.7()(64bit) for package: docker-18.06.1ce-8                                                                                        .amzn2.x86_64
+--> Running transaction check
+---> Package libcgroup.x86_64 0:0.41-15.amzn2 will be installed
+---> Package libtool-ltdl.x86_64 0:2.4.2-22.2.amzn2.0.2 will be installed
+---> Package pigz.x86_64 0:2.3.4-1.amzn2.0.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package         Arch      Version                   Repository            Size
+================================================================================
+Installing:
+ docker          x86_64    18.06.1ce-8.amzn2         amzn2extra-docker     37 M
+Installing for dependencies:
+ libcgroup       x86_64    0.41-15.amzn2             amzn2-core            65 k
+ libtool-ltdl    x86_64    2.4.2-22.2.amzn2.0.2      amzn2-core            49 k
+ pigz            x86_64    2.3.4-1.amzn2.0.1         amzn2-core            81 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+3 Dependent packages)
+
+Total download size: 37 M
+Installed size: 151 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/4): libcgroup-0.41-15.amzn2.x86_64.rpm                  |  65 kB   00:00
+(2/4): libtool-ltdl-2.4.2-22.2.amzn2.0.2.x86_64.rpm        |  49 kB   00:00
+(3/4): pigz-2.3.4-1.amzn2.0.1.x86_64.rpm                   |  81 kB   00:00
+(4/4): docker-18.06.1ce-8.amzn2.x86_64.rpm                 |  37 MB   00:00
+--------------------------------------------------------------------------------
+Total                                               40 MB/s |  37 MB  00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libtool-ltdl-2.4.2-22.2.amzn2.0.2.x86_64                     1/4
+  Installing : pigz-2.3.4-1.amzn2.0.1.x86_64                                2/4
+  Installing : libcgroup-0.41-15.amzn2.x86_64                               3/4
+  Installing : docker-18.06.1ce-8.amzn2.x86_64                                                                                                                      4/4
+  Verifying  : libcgroup-0.41-15.amzn2.x86_64                                                                                                                       1/4
+  Verifying  : pigz-2.3.4-1.amzn2.0.1.x86_64                                                                                                                        2/4
+  Verifying  : libtool-ltdl-2.4.2-22.2.amzn2.0.2.x86_64                                                                                                             3/4
+  Verifying  : docker-18.06.1ce-8.amzn2.x86_64                                                                                                                      4/4
+
+Installed:
+  docker.x86_64 0:18.06.1ce-8.amzn2
+
+Dependency Installed:
+  libcgroup.x86_64 0:0.41-15.amzn2                    libtool-ltdl.x86_64 0:2.4.2-22.2.amzn2.0.2                    pigz.x86_64 0:2.3.4-1.amzn2.0.1
+
+Complete!
+[root@ip-172-31-33-34 ec2-user]# docker --version
+Docker version 18.06.1-ce, build e68fc7a215d7133c34aa18e3b72b4a21fd0c6136
+[root@ip-172-31-33-34 ec2-user]# docker login
+Warning: failed to get default registry endpoint from daemon (Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?). Using system default: https://index.docker.io/v1/
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: karunakar5242
+Password:
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+[root@ip-172-31-33-34 ec2-user]# service docker start
+Redirecting to /bin/systemctl start docker.service
+[root@ip-172-31-33-34 ec2-user]# docker info
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 18.06.1-ce
+Storage Driver: overlay2
+ Backing Filesystem: xfs
+ Supports d_type: true
+ Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge host macvlan null overlay
+ Log: awslogs fluentd gcplogs gelf journald json-file logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version: 468a545b9edcd5932818eb9de8e72413e616e86e
+runc version: 69663f0bd4b60df09991c08812a60108003fa340
+init version: fec3683
+Security Options:
+ seccomp
+  Profile: default
+Kernel Version: 4.14.104-95.84.amzn2.x86_64
+Operating System: Amazon Linux 2
+OSType: linux
+Architecture: x86_64
+CPUs: 1
+Total Memory: 983.7MiB
+Name: ip-172-31-33-34.ec2.internal
+ID: M34Z:W4XK:JA46:WUHS:XHSN:NSPT:IBF4:RGAD:6LMA:SL57:KW6Q:67Z5
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+ 127.0.0.0/8
+Live Restore Enabled: false
+
+[root@ip-172-31-33-34 ec2-user]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: karunakar5242
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[root@ip-172-31-33-34 ec2-user]# docker search hello world
+"docker search" requires exactly 1 argument.
+See 'docker search --help'.
+
+Usage:  docker search [OPTIONS] TERM
+
+Search the Docker Hub for images
+[root@ip-172-31-33-34 ec2-user]# docker search nginx
+NAME                                                   DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+nginx                                                  Official build of Nginx.                        11147               [OK]
+jwilder/nginx-proxy                                    Automated Nginx reverse proxy for docker con…   1573                                    [OK]
+richarvey/nginx-php-fpm                                Container running Nginx + PHP-FPM capable of…   697                                     [OK]
+jrcs/letsencrypt-nginx-proxy-companion                 LetsEncrypt container to use with nginx as p…   494                                     [OK]
+kitematic/hello-world-nginx                            A light-weight nginx container that demonstr…   124
+webdevops/php-nginx                                    Nginx with PHP-FPM                              123                                     [OK]
+zabbix/zabbix-web-nginx-mysql                          Zabbix frontend based on Nginx web-server wi…   92                                      [OK]
+bitnami/nginx                                          Bitnami nginx Docker Image                      65                                      [OK]
+linuxserver/nginx                                      An Nginx container, brought to you by LinuxS…   57
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          50                                      [OK]
+tobi312/rpi-nginx                                      NGINX on Raspberry Pi / armhf                   24                                      [OK]
+nginx/nginx-ingress                                    NGINX Ingress Controller for Kubernetes         17
+nginxdemos/hello                                       NGINX webserver that serves a simple page co…   13                                      [OK]
+schmunk42/nginx-redirect                               A very simple container to redirect HTTP tra…   13                                      [OK]
+wodby/drupal-nginx                                     Nginx for Drupal container image                12                                      [OK]
+blacklabelops/nginx                                    Dockerized Nginx Reverse Proxy Server.          12                                      [OK]
+centos/nginx-18-centos7                                Platform for running nginx 1.8 or building n…   10
+centos/nginx-112-centos7                               Platform for running nginx 1.12 or building …   7
+nginxinc/nginx-unprivileged                            Unprivileged NGINX Dockerfiles                  4
+1science/nginx                                         Nginx Docker images that include Consul Temp…   4                                       [OK]
+mailu/nginx                                            Mailu nginx frontend                            3                                       [OK]
+travix/nginx                                           NGinx reverse proxy                             2                                       [OK]
+toccoag/openshift-nginx                                Nginx reverse proxy for Nice running on same…   1                                       [OK]
+ansibleplaybookbundle/nginx-apb                        An APB to deploy NGINX                          0                                       [OK]
+wodby/nginx                                            Generic nginx                                   0                                       [OK]
+[root@ip-172-31-33-34 ec2-user]# docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+27833a3ba0a5: Pull complete
+e83729dd399a: Pull complete
+ebc6a67df66d: Pull complete
+Digest: sha256:c8a861b8a1eeef6d48955a6c6d5dff8e2580f13ff4d0f549e082e7c82a8617a2
+Status: Downloaded newer image for nginx:latest
+[root@ip-172-31-33-34 ec2-user]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              2bcb04bdb83f        3 days ago          109MB
+[root@ip-172-31-33-34 ec2-user]# docker search hello world
+"docker search" requires exactly 1 argument.
+See 'docker search --help'.
+
+Usage:  docker search [OPTIONS] TERM
+
+Search the Docker Hub for images
+[root@ip-172-31-33-34 ec2-user]# docker search hello
+NAME                                       DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+hello-world                                Hello World! (an example of minimal Dockeriz…   869                 [OK]
+tutum/hello-world                          Image to test docker deployments. Has Apache…   59                                      [OK]
+openshift/hello-openshift                  Simple Example for Running a Container on Op…   31
+google/nodejs-hello                                                                        25                                      [OK]
+dockercloud/hello-world                    Hello World!                                    15                                      [OK]
+nginxdemos/hello                           NGINX webserver that serves a simple page co…   13                                      [OK]
+karthequian/helloworld                     A simple helloworld nginx container to get y…   12                                      [OK]
+crccheck/hello-world                       Hello World web server in under 2.5 MB          6                                       [OK]
+bonomat/nodejs-hello-world                 a simple nodejs hello world container           3                                       [OK]
+hello-seattle                              Hello from DockerCon 2016 (Seattle)!            3                   [OK]
+microsoft/mcr-hello-world                  Hello World! (an example of minimal Dockeriz…   2
+ppc64le/hello-world                        Hello World! (an example of minimal Dockeriz…   2
+strm/helloworld-http                       A hello world container for testing http bal…   2                                       [OK]
+seabreeze/azure-mesh-helloworld            Azure Service Fabric Mesh HelloWorld!           1                                       [OK]
+seabreeze/sbz-helloworld                   A HelloWorld example to run on SeaBreeze.       1                                       [OK]
+seabreeze/sbz-helloworld-sidecar           Sidecar hello world example for SeaBreeze.      0                                       [OK]
+infrastructureascode/hello-world           A tiny "Hello World" web server with a healt…   0                                       [OK]
+gramercylabs/docker-helloworld             hello world                                     0                                       [OK]
+hivesolutions/hello_appier                 Simple hello world application for Appier.      0                                       [OK]
+dongxuny/hellotencent                      Auto build                                      0                                       [OK]
+wouterm/helloworld                          A simple Docker image with an Nginx server …   0                                       [OK]
+ansibleplaybookbundle/hello-world-db-apb   An APB which deploys a sample Hello World! a…   0                                       [OK]
+ansibleplaybookbundle/hello-world-apb      An APB which deploys a sample Hello World! a…   0                                       [OK]
+silasbw/hello                                                                              0
+milsonian/hellohttp                        Basic hello world http app in golang            0                                       [OK]
+[root@ip-172-31-33-34 ec2-user]# docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+1b930d010525: Pull complete
+Digest: sha256:2557e3c07ed1e38f26e389462d03ed943586f744621577a99efb77324b0fe535
+Status: Downloaded newer image for hello-world:latest
+[root@ip-172-31-33-34 ec2-user]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              2bcb04bdb83f        3 days ago          109MB
+hello-world         latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ec2-user]# docker tag 2bcb04bdb83f
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Sat Mar 30 04:46:10 2019 from 122.166.165.218
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+1 package(s) needed for security, out of 3 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-33-34 ~]$ service docker start
+Redirecting to /bin/systemctl start docker.service
+Failed to start docker.service: The name org.freedesktop.PolicyKit1 was not provided by any .service files
+See system logs and 'systemctl status docker.service' for details.
+[ec2-user@ip-172-31-33-34 ~]$ docker login
+Warning: failed to get default registry endpoint from daemon (Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.38/info: dial unix /var/run/docker.sock: connect: permission denied). Using system default: https://index.docker.io/v1/
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: karunakar5242
+Password:
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.38/auth: dial unix /var/run/docker.sock: connect: permission denied
+[ec2-user@ip-172-31-33-34 ~]$ sudo -i
+[root@ip-172-31-33-34 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              2bcb04bdb83f        3 days ago          109MB
+hello-world         latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ~]# docker tag 2bcb04bdb83f karunakar5242/narasimha5242:docker
+[root@ip-172-31-33-34 ~]# docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+karunakar5242/narasimha5242   docker              2bcb04bdb83f        3 days ago          109MB
+nginx                         latest              2bcb04bdb83f        3 days ago          109MB
+hello-world                   latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ~]# docker push karunakar5242/narasimha5242:docker
+The push refers to repository [docker.io/karunakar5242/narasimha5242]
+7e274c0effe8: Mounted from library/nginx
+dd0338cdfab3: Mounted from library/nginx
+5dacd731af1b: Mounted from library/nginx
+docker: digest: sha256:dabecc7dece2fff98fb00add2f0b525b7cd4a2cacddcc27ea4a15a7922ea47ea size: 948
+[root@ip-172-31-33-34 ~]# docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+karunakar5242/narasimha5242   docker              2bcb04bdb83f        3 days ago          109MB
+nginx                         latest              2bcb04bdb83f        3 days ago          109MB
+hello-world                   latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ~]# docker run -itd 2bcb04bdb83f
+5a65ffa26d5a2f2410f7d17300b3874c811bcf70478ac7b467de592e90d7de35
+[root@ip-172-31-33-34 ~]# docker ps-a
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  config      Manage Docker configs
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   About a minute ago   Up About a minute   80/tcp              dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker attach 5a65ffa26d5a
+apt -get install
+
+apt-get install ubuntu
+^C[root@ip-172-31-33-34 ~]# docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+898c46f3b1a1: Pull complete
+63366dfa0a50: Pull complete
+041d4cd74a92: Pull complete
+6e1bee0f8701: Pull complete
+Digest: sha256:017eef0b616011647b269b5c65826e2e2ebddbe5d1f8c1e56b3599fb14fabec8
+Status: Downloaded newer image for ubuntu:latest
+[root@ip-172-31-33-34 ~]# docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+karunakar5242/narasimha5242   docker              2bcb04bdb83f        3 days ago          109MB
+nginx                         latest              2bcb04bdb83f        3 days ago          109MB
+ubuntu                        latest              94e814e2efa8        2 weeks ago         88.9MB
+hello-world                   latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ~]# docker run 94e814e2efa8
+[root@ip-172-31-33-34 ~]# docker ps-a
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  config      Manage Docker configs
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS                          PORTS               NAMES
+88073fd39fc2        94e814e2efa8        "/bin/bash"              About a minute ago   Exited (0) About a minute ago                       boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   13 minutes ago       Exited (0) 4 minutes ago                            dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker attach 88073fd39fc2
+You cannot attach to a stopped container, start it first
+[root@ip-172-31-33-34 ~]# service docker start 88073fd39fc2
+Redirecting to /bin/systemctl start  88073fd39fc2 docker.service
+Failed to start 88073fd39fc2.service: Unit not found.
+[root@ip-172-31-33-34 ~]# service docker start
+Redirecting to /bin/systemctl start docker.service
+[root@ip-172-31-33-34 ~]# docker attach 88073fd39fc2
+You cannot attach to a stopped container, start it first
+[root@ip-172-31-33-34 ~]# docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+karunakar5242/narasimha5242   docker              2bcb04bdb83f        3 days ago          109MB
+nginx                         latest              2bcb04bdb83f        3 days ago          109MB
+ubuntu                        latest              94e814e2efa8        2 weeks ago         88.9MB
+hello-world                   latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ~]# docker run -itd fce289e99eb9
+8bf8c9efdd5293fc163be40b5e4315247325450f8810a61557cf5e442aecfee1
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+8bf8c9efdd52        fce289e99eb9        "/hello"                 5 seconds ago       Exited (0) 4 seconds ago                       eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              7 minutes ago       Exited (0) 7 minutes ago                       boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   19 minutes ago      Exited (0) 9 minutes ago                       dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker start 88073fd39fc2
+88073fd39fc2
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+8bf8c9efdd52        fce289e99eb9        "/hello"                 41 seconds ago      Exited (0) 40 seconds ago                       eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              7 minutes ago       Exited (0) 6 seconds ago                        boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   20 minutes ago      Exited (0) 10 minutes ago                       dreamy_tereshkova
+[root@ip-172-31-33-34 ~]#
+[root@ip-172-31-33-34 ~]# docker attach 88073fd39fc2
+You cannot attach to a stopped container, start it first
+[root@ip-172-31-33-34 ~]# docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+karunakar5242/narasimha5242   docker              2bcb04bdb83f        3 days ago          109MB
+nginx                         latest              2bcb04bdb83f        3 days ago          109MB
+ubuntu                        latest              94e814e2efa8        2 weeks ago         88.9MB
+hello-world                   latest              fce289e99eb9        2 months ago        1.84kB
+[root@ip-172-31-33-34 ~]# docker start 94e814e2efa8
+Error response from daemon: No such container: 94e814e2efa8
+Error: failed to start containers: 94e814e2efa8
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+8bf8c9efdd52        fce289e99eb9        "/hello"                 2 minutes ago       Exited (0) 2 minutes ago                        eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              9 minutes ago       Exited (0) 2 minutes ago                        boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   22 minutes ago      Exited (0) 12 minutes ago                       dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker start 88073fd39fc2
+88073fd39fc2
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+8bf8c9efdd52        fce289e99eb9        "/hello"                 3 minutes ago       Exited (0) 3 minutes ago                        eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              10 minutes ago      Exited (0) 6 seconds ago                        boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   22 minutes ago      Exited (0) 12 minutes ago                       dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker run -itd 88073fd39fc2
+Unable to find image '88073fd39fc2:latest' locally
+docker: Error response from daemon: pull access denied for 88073fd39fc2, repository does not exist or may require 'docker login'.
+See 'docker run --help'.
+[root@ip-172-31-33-34 ~]# docker login
+Authenticating with existing credentials...
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                          PORTS               NAMES
+8bf8c9efdd52        fce289e99eb9        "/hello"                 4 minutes ago       Exited (0) 4 minutes ago                            eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              11 minutes ago      Exited (0) About a minute ago                       boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   23 minutes ago      Exited (0) 13 minutes ago                           dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker start 88073fd39fc2
+88073fd39fc2
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+8bf8c9efdd52        fce289e99eb9        "/hello"                 4 minutes ago       Exited (0) 4 minutes ago                        eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              11 minutes ago      Exited (0) 6 seconds ago                        boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   23 minutes ago      Exited (0) 14 minutes ago                       dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker run -itd 94e814e2efa8
+fc6c6a696e62ea6a3fa94b4b6765b848ed0555b4bce3d3b3abd60d899922f3c1
+[root@ip-172-31-33-34 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+fc6c6a696e62        94e814e2efa8        "/bin/bash"              6 seconds ago       Up 5 seconds                                    eager_joliot
+8bf8c9efdd52        fce289e99eb9        "/hello"                 4 minutes ago       Exited (0) 4 minutes ago                        eager_stonebraker
+88073fd39fc2        94e814e2efa8        "/bin/bash"              11 minutes ago      Exited (0) 37 seconds ago                       boring_spence
+5a65ffa26d5a        2bcb04bdb83f        "nginx -g 'daemon of…"   24 minutes ago      Exited (0) 14 minutes ago                       dreamy_tereshkova
+[root@ip-172-31-33-34 ~]# docker attach fc6c6a696e62
+root@fc6c6a696e62:/# apt-get install vim
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package vim
+root@fc6c6a696e62:/#
+
